@@ -210,6 +210,7 @@ contract Bank is Ownable {
         bool valid = false;
         address customerAddress = address(0x0);
         (valid, customerAddress) = verifyUser(_hash, _signatures);
+        require(customerAddress != address(0x0), "Error: customer does not enrolled in the contract");
         require(listUser[customerAddress].activate, "Error: customer is deactivated");
         require(msg.sender == customerAddress, "Error: requester and savings account owner mismatch");
         require(valid, "Error: invalid signatures");
@@ -234,6 +235,7 @@ contract Bank is Ownable {
         bool valid = false;
         address customerAddress = address(0x0);
         (valid, customerAddress) = verifyUser(_hash, _signatures);
+        require(customerAddress != address(0x0), "Error: customer does not enrolled in the contract");
         require(listUser[customerAddress].activate, "Error: customer is deactivated");
         require(msg.sender == customerAddress, "Error: requester and savings account owner mismatch");
         require(valid, "Error: invalid signatures");
